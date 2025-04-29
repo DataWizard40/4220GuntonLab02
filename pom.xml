@@ -136,7 +136,6 @@
 									<element>PACKAGE</element>
 									<includes>
 										<include>edu.westga.devops.a7.model</include>
-										<include>edu.westga.devops.a7.view</include>
 									</includes>
 									<limits>
 										<limit>
