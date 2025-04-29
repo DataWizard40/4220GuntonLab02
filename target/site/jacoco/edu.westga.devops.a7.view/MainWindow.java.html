@@ -8,8 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-import edu.westga.devops.a7.model.HiLowGame;
-import edu.westga.devops.a7.model.GuessReport;
+import edu.westga.devops.a7.model.Item;
 
 /**
  * CodeBehind To Handle Processing for the MainWindow
@@ -17,52 +16,7 @@ import edu.westga.devops.a7.model.GuessReport;
  * @author	DevOps
  * @version Spring 2025
  */
-<span class="fc" id="L20">public class MainWindow {       </span>
-	private HiLowGame gameManager;
+<span class="nc" id="L19">public class MainWindow {       </span>
 	
-	@FXML private TextField guess;
-	@FXML private TextArea result;
-	@FXML private Button makeGuessButton;
-
-	@FXML
-	public void makeGuess(ActionEvent event) {
-<span class="fc" id="L29">		int guess = -1;</span>
-		try {
-<span class="fc" id="L31">			guess = Integer.parseInt(this.guess.getText());</span>
-<span class="nc" id="L32">		} catch (NumberFormatException e) {</span>
-<span class="nc" id="L33">			this.result.setText(&quot;Guess must be a valid integer.&quot;);</span>
-<span class="nc" id="L34">			return;</span>
-<span class="fc" id="L35">		}</span>
-		
-<span class="fc" id="L37">		GuessReport result = this.gameManager.checkGuess(guess);</span>
-<span class="fc bfc" id="L38" title="All 2 branches covered.">		if(result == GuessReport.TOO_HIGH) {</span>
-<span class="fc" id="L39">			this.result.setText(&quot;Guess is too high, try again.&quot;);</span>
-		}
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">		else if(result == GuessReport.TOO_LOW) {</span>
-<span class="fc" id="L42">			this.result.setText(&quot;Guess is too low, try again.&quot;);</span>
-		}
-<span class="nc bnc" id="L44" title="All 2 branches missed.">		else if(result == GuessReport.GUESS_LIMIT_REACHED) {</span>
-<span class="nc" id="L45">			this.result.setText(&quot;Failed to guess the number, new number has been generated, try again.&quot;);</span>
-		}
-<span class="nc bnc" id="L47" title="All 2 branches missed.">		else if(result == GuessReport.CORRECT) {</span>
-<span class="nc" id="L48">			this.result.setText(&quot;Sucessfully guessed the number, new number has been generated, try again.&quot;);</span>
-		}
-		else {
-<span class="nc" id="L51">			this.result.setText(&quot;How did you get here? Try again???&quot;);</span>
-		}
-<span class="fc" id="L53">	}</span>
-	
-	/**
-	 * Handle initialization checks for the JavaFX components, and perform any
-	 * necessary custom initialization.
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * 
-	 */
-	@FXML
-	public void initialize() {
-<span class="fc" id="L65">		this.gameManager = new HiLowGame();</span>
-<span class="fc" id="L66">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

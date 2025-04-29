@@ -21,26 +21,4 @@ import edu.westga.devops.a7.Main;
 
 public class TestMakeGuess extends ApplicationTest  {
 
-	@Override
-	public void start(Stage stage) throws IOException {
-		(new Main()).start(stage);
-	}
-
-	@Test
-	public void makeGuessThatIsTooLow() {
-		this.clickOn("#guess");
-		this.type(KeyCode.DIGIT0);
-		this.clickOn("#makeGuessButton");
-		FxAssert.verifyThat("#result", TextInputControlMatchers.hasText("Guess is too low, try again."));
-	}
-
-	@Test
-	public void makeGuessThatIsTooHigh() {
-		this.clickOn("#guess");
-		this.type(KeyCode.DIGIT1);
-		this.type(KeyCode.DIGIT0);
-		this.type(KeyCode.DIGIT0);
-		this.clickOn("#makeGuessButton");
-		FxAssert.verifyThat("#result", TextInputControlMatchers.hasText("Guess is too high, try again."));
-	}
 }
