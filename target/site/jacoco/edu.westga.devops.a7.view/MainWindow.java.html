@@ -2,11 +2,11 @@
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ListView;
 
 import edu.westga.devops.a7.model.Item;
 
@@ -16,7 +16,50 @@ import edu.westga.devops.a7.model.Item;
  * @author	DevOps
  * @version Spring 2025
  */
-<span class="nc" id="L19">public class MainWindow {       </span>
-	
+<span class="nc bnc" id="L19" title="All 2 branches missed.">public class MainWindow {</span>
+
+    @FXML
+    private Button addItemButton;
+
+    @FXML
+    private ListView&lt;?&gt; itemsListView;
+
+    @FXML
+    private TextField nameTextField;
+
+    @FXML
+    private TextField quantityTextField;
+
+    @FXML
+    private Button removeItemButton;
+
+    @FXML
+    private Button updateQuantityButton;
+
+    @FXML
+    void addItem(ActionEvent event) {
+
+<span class="nc" id="L42">    }</span>
+
+    @FXML
+    void removeItem(ActionEvent event) {
+
+<span class="nc" id="L47">    }</span>
+
+    @FXML
+    void updateQuantity(ActionEvent event) {
+
+<span class="nc" id="L52">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc bnc" id="L56" title="All 4 branches missed.">        assert addItemButton != null : &quot;fx:id=\&quot;addItemButton\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
+<span class="nc bnc" id="L57" title="All 4 branches missed.">        assert itemsListView != null : &quot;fx:id=\&quot;itemsListView\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">        assert nameTextField != null : &quot;fx:id=\&quot;nameTextField\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">        assert quantityTextField != null : &quot;fx:id=\&quot;quantityTextField\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
+<span class="nc bnc" id="L60" title="All 4 branches missed.">        assert removeItemButton != null : &quot;fx:id=\&quot;removeItemButton\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
+<span class="nc bnc" id="L61" title="All 4 branches missed.">        assert updateQuantityButton != null : &quot;fx:id=\&quot;updateQuantityButton\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
+
+<span class="nc" id="L63">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

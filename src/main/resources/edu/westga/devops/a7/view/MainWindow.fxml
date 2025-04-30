@@ -8,7 +8,7 @@
 
 <AnchorPane minHeight="99.0" minWidth="160.0" prefHeight="517.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.devops.a7.view.MainWindow">
    <children>
-      <ListView fx:id="itemsListView" layoutX="30.0" layoutY="59.0" prefHeight="364.0" prefWidth="200.0" />
+      <ListView fx:id="itemsListView" layoutX="30.0" layoutY="59.0" onMouseClicked="#selectItem" prefHeight="364.0" prefWidth="200.0" />
       <Label layoutX="94.0" layoutY="30.0" text="Shopping List" />
       <TextField fx:id="nameTextField" layoutX="315.0" layoutY="119.0" />
       <Label layoutX="360.0" layoutY="88.0" text="Item Name" />

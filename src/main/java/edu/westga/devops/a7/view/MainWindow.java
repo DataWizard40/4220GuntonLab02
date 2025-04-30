@@ -1,6 +1,7 @@
 package edu.westga.devops.a7.view;
 
 import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -22,7 +23,7 @@ public class MainWindow {
     private Button addItemButton;
 
     @FXML
-    private ListView<?> itemsListView;
+    private ListView<String> itemsListView;
 
     @FXML
     private TextField nameTextField;
@@ -38,17 +39,73 @@ public class MainWindow {
 
     @FXML
     void addItem(ActionEvent event) {
-
+		if (this.nameTextField.getText() == null || this.nameTextField.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Invalid Item Name");
+			alert.setHeaderText(null);
+			alert.setContentText("Please procide a valid item name.");
+			alert.showAndWait();
+		} else {
+			String name = this.nameTextField.getText();
+			Item item = new Item(name);
+			this.itemsListView.getItems().add(item.toString());
+		}
     }
 
     @FXML
     void removeItem(ActionEvent event) {
-
+		if (this.itemsListView.getSelectionModel().getSelectedItem() == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Item Not Selected");
+			alert.setHeaderText(null);
+			alert.setContentText("Please select an item to remove from the shopping list.");
+			alert.showAndWait();
+		} else {
+			this.itemsListView.getItems().remove(this.itemsListView.getSelectionModel().getSelectedIndex());
+			this.nameTextField.setText("");
+			this.quantityTextField.setText("");
+		}
+    }
+	
+	@FXML
+    void selectItem(MouseEvent event) {
+		this.nameTextField.setText(this.getSubstringBefore(this.itemsListView.getSelectionModel().getSelectedItem()));
+		this.quantityTextField.setText(this.getSubstringAfter(this.itemsListView.getSelectionModel().getSelectedItem()));
     }
 
     @FXML
     void updateQuantity(ActionEvent event) {
-
+		if (this.itemsListView.getSelectionModel().getSelectedItem() == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Item Not Selected");
+			alert.setHeaderText(null);
+			alert.setContentText("Please select an item to modify from the shopping list.");
+			alert.showAndWait();
+		} else if (this.quantityTextField.getText() == null || this.quantityTextField.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("No Input");
+			alert.setHeaderText(null);
+			alert.setContentText("No input has been provided.");
+			alert.showAndWait();
+		} else if (this.containsNonNumericValues(this.quantityTextField.getText())) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Non-numeric Value Entered");
+			alert.setHeaderText(null);
+			alert.setContentText("Please provide a numeric value.");
+			alert.showAndWait();
+		} else if (Integer.parseInt(this.quantityTextField.getText()) <= 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Non-positive Numeric Value Entered");
+			alert.setHeaderText(null);
+			alert.setContentText("Please provide a positive numeric value.");
+			alert.showAndWait();
+		} else {
+			this.itemsListView.getItems().remove(this.itemsListView.getSelectionModel().getSelectedIndex());
+			Item item = new Item(this.nameTextField.getText());
+			item.setQuantity(Integer.parseInt(this.quantityTextField.getText()));
+			this.itemsListView.getItems().add(item.toString());
+			
+		}
     }
 
     @FXML
@@ -61,4 +118,23 @@ public class MainWindow {
         assert updateQuantityButton != null : "fx:id=\"updateQuantityButton\" was not injected: check your FXML file 'MainWindow.fxml'.";
 
     }
+	
+	private String getSubstringBefore(String str) {
+		int index = str.indexOf(":");
+		return str.substring(0, index);
+	}
+	
+	private String getSubstringAfter(String str) {
+		int index = str.indexOf(":");
+		return str.substring(index + 1).trim();
+	}
+	
+	private boolean containsNonNumericValues(String str) {
+		for (char c : str.toCharArray()) {
+			if (Character.isLetter(c) || !Character.isLetterOrDigit(c)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
