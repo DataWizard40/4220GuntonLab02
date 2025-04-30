@@ -5,8 +5,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Label;
 
@@ -18,7 +16,7 @@ import edu.westga.devops.a7.model.Item;
  * @author	DevOps
  * @version Spring 2025
  */
-<span class="pc bpc" id="L21" title="1 of 2 branches missed.">public class MainWindow {</span>
+<span class="fc" id="L19">public class MainWindow {</span>
 
     @FXML
     private Button addItemButton;
@@ -43,79 +41,62 @@ import edu.westga.devops.a7.model.Item;
 
     @FXML
     void addItem(ActionEvent event) {
-<span class="pc bpc" id="L46" title="1 of 4 branches missed.">		if (this.nameTextField.getText() == null || this.nameTextField.getText().isEmpty()) {</span>
-<span class="fc" id="L47">			this.errorLabel.setText(&quot;Please provide a valid item name.&quot;);</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">		if (this.nameTextField.getText().isEmpty()) {</span>
+<span class="fc" id="L45">			this.errorLabel.setText(&quot;Please provide a valid item name.&quot;);</span>
 		} else {
-<span class="fc" id="L49">			String name = this.nameTextField.getText();</span>
-<span class="fc" id="L50">			Item item = new Item(name);</span>
-<span class="fc" id="L51">			this.itemsListView.getItems().add(item.toString());</span>
+<span class="fc" id="L47">			String name = this.nameTextField.getText();</span>
+<span class="fc" id="L48">			Item item = new Item(name);</span>
+<span class="fc" id="L49">			this.itemsListView.getItems().add(item.toString());</span>
 		}
-<span class="fc" id="L53">    }</span>
+<span class="fc" id="L51">    }</span>
 
     @FXML
     void removeItem(ActionEvent event) {
-<span class="fc bfc" id="L57" title="All 2 branches covered.">		if (this.itemsListView.getSelectionModel().getSelectedItem() == null) {</span>
-<span class="fc" id="L58">			this.errorLabel.setText(&quot;Please select an item to remove from the shopping list.&quot;);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">		if (this.itemsListView.getSelectionModel().getSelectedItem() == null) {</span>
+<span class="fc" id="L56">			this.errorLabel.setText(&quot;Please select an item to remove from the shopping list.&quot;);</span>
 		} else {
-<span class="fc" id="L60">			this.itemsListView.getItems().remove(this.itemsListView.getSelectionModel().getSelectedIndex());</span>
-<span class="fc" id="L61">			this.nameTextField.setText(&quot;&quot;);</span>
-<span class="fc" id="L62">			this.quantityTextField.setText(&quot;&quot;);</span>
+<span class="fc" id="L58">			this.itemsListView.getItems().remove(this.itemsListView.getSelectionModel().getSelectedIndex());</span>
+<span class="fc" id="L59">			this.nameTextField.setText(&quot;&quot;);</span>
+<span class="fc" id="L60">			this.quantityTextField.setText(&quot;&quot;);</span>
 		}
-<span class="fc" id="L64">    }</span>
+<span class="fc" id="L62">    }</span>
 	
 	@FXML
     void selectItem(MouseEvent event) {
-<span class="fc" id="L68">		this.nameTextField.setText(this.getSubstringBefore(this.itemsListView.getSelectionModel().getSelectedItem()));</span>
-<span class="fc" id="L69">		this.quantityTextField.setText(this.getSubstringAfter(this.itemsListView.getSelectionModel().getSelectedItem()));</span>
-<span class="fc" id="L70">    }</span>
+<span class="fc" id="L66">		this.nameTextField.setText(this.getSubstringBefore(this.itemsListView.getSelectionModel().getSelectedItem()));</span>
+<span class="fc" id="L67">    }</span>
 
     @FXML
     void updateQuantity(ActionEvent event) {
-<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (this.itemsListView.getSelectionModel().getSelectedItem() == null) {</span>
-<span class="fc" id="L75">			this.errorLabel.setText(&quot;Please select an item to modify from the shopping list.&quot;);</span>
-<span class="pc bpc" id="L76" title="2 of 4 branches missed.">		} else if (this.quantityTextField.getText() == null || this.quantityTextField.getText().isEmpty()) {</span>
-<span class="nc" id="L77">			this.errorLabel.setText(&quot;No input has been provided.&quot;);</span>
-<span class="pc bpc" id="L78" title="1 of 2 branches missed.">		} else if (this.containsNonNumericValues(this.quantityTextField.getText())) {</span>
-<span class="nc" id="L79">			this.errorLabel.setText(&quot;Please provide a numeric value.&quot;);</span>
-<span class="fc bfc" id="L80" title="All 2 branches covered.">		} else if (Integer.parseInt(this.quantityTextField.getText()) &lt;= 0) {</span>
-<span class="fc" id="L81">			this.errorLabel.setText(&quot;Please provide a positive numeric value.&quot;);</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">		if (this.itemsListView.getSelectionModel().getSelectedItem() == null) {</span>
+<span class="fc" id="L72">			this.errorLabel.setText(&quot;Please select an item to modify from the shopping list.&quot;);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		} else if (this.quantityTextField.getText().isEmpty()) {</span>
+<span class="fc" id="L74">			this.errorLabel.setText(&quot;No input has been provided.&quot;);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">		} else if (this.containsNonNumericValues(this.quantityTextField.getText())) {</span>
+<span class="fc" id="L76">			this.errorLabel.setText(&quot;Please provide a numeric value.&quot;);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">		} else if (Integer.parseInt(this.quantityTextField.getText()) &lt;= 0) {</span>
+<span class="fc" id="L78">			this.errorLabel.setText(&quot;Please provide a positive numeric value.&quot;);</span>
 		} else {
-<span class="fc" id="L83">			this.itemsListView.getItems().remove(this.itemsListView.getSelectionModel().getSelectedIndex());</span>
-<span class="fc" id="L84">			Item item = new Item(this.nameTextField.getText());</span>
-<span class="fc" id="L85">			item.setQuantity(Integer.parseInt(this.quantityTextField.getText()));</span>
-<span class="fc" id="L86">			this.itemsListView.getItems().add(item.toString());</span>
+<span class="fc" id="L80">			this.itemsListView.getItems().remove(this.itemsListView.getSelectionModel().getSelectedIndex());</span>
+<span class="fc" id="L81">			Item item = new Item(this.nameTextField.getText());</span>
+<span class="fc" id="L82">			item.setQuantity(Integer.parseInt(this.quantityTextField.getText()));</span>
+<span class="fc" id="L83">			this.itemsListView.getItems().add(item.toString());</span>
 			
 		}
-<span class="fc" id="L89">    }</span>
-
-    @FXML
-    void initialize() {
-<span class="pc bpc" id="L93" title="2 of 4 branches missed.">        assert addItemButton != null : &quot;fx:id=\&quot;addItemButton\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
-<span class="pc bpc" id="L94" title="2 of 4 branches missed.">        assert itemsListView != null : &quot;fx:id=\&quot;itemsListView\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
-<span class="pc bpc" id="L95" title="2 of 4 branches missed.">        assert nameTextField != null : &quot;fx:id=\&quot;nameTextField\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
-<span class="pc bpc" id="L96" title="2 of 4 branches missed.">        assert quantityTextField != null : &quot;fx:id=\&quot;quantityTextField\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
-<span class="pc bpc" id="L97" title="2 of 4 branches missed.">        assert removeItemButton != null : &quot;fx:id=\&quot;removeItemButton\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
-<span class="pc bpc" id="L98" title="2 of 4 branches missed.">        assert updateQuantityButton != null : &quot;fx:id=\&quot;updateQuantityButton\&quot; was not injected: check your FXML file 'MainWindow.fxml'.&quot;;</span>
-
-<span class="fc" id="L100">    }</span>
+<span class="fc" id="L86">    }</span>
 	
 	private String getSubstringBefore(String str) {
-<span class="fc" id="L103">		int index = str.indexOf(&quot;:&quot;);</span>
-<span class="fc" id="L104">		return str.substring(0, index);</span>
-	}
-	
-	private String getSubstringAfter(String str) {
-<span class="fc" id="L108">		int index = str.indexOf(&quot;:&quot;);</span>
-<span class="fc" id="L109">		return str.substring(index + 1).trim();</span>
+<span class="fc" id="L89">		int index = str.indexOf(&quot;:&quot;);</span>
+<span class="fc" id="L90">		return str.substring(0, index);</span>
 	}
 	
 	private boolean containsNonNumericValues(String str) {
-<span class="fc bfc" id="L113" title="All 2 branches covered.">		for (char c : str.toCharArray()) {</span>
-<span class="pc bpc" id="L114" title="2 of 4 branches missed.">			if (Character.isLetter(c) || !Character.isLetterOrDigit(c)) {</span>
-<span class="nc" id="L115">				return true;</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">		for (char j : str.toCharArray()) {</span>
+<span class="pc bpc" id="L95" title="1 of 4 branches missed.">			if (Character.isLetter(j) || !Character.isLetterOrDigit(j)) {</span>
+<span class="fc" id="L96">				return true;</span>
 			}
 		}
-<span class="fc" id="L118">		return false;</span>
+<span class="fc" id="L99">		return false;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

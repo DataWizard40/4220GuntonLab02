@@ -30,7 +30,7 @@ public class TestShoppingList extends ApplicationTest  {
 	
 	// Testing User Story #1
 	@Test
-	public void testInvalidItemNameForAddItemButton() {
+	public void testEmptyItemNameForAddItemButton() {
 		this.clickOn("#addItemButton");
 		FxAssert.verifyThat("#errorLabel", LabeledMatchers.hasText("Please provide a valid item name."));
 	}
@@ -83,8 +83,32 @@ public class TestShoppingList extends ApplicationTest  {
 		this.clickOn("#addItemButton");
 		String firstItem = listView.getItems().get(0);
 		this.clickOn(firstItem.toString());
+		this.clickOn("#quantityTextField").write("0");
 		this.clickOn("#updateQuantityButton");
 		FxAssert.verifyThat("#errorLabel", LabeledMatchers.hasText("Please provide a positive numeric value."));
+	}
+	
+	@Test
+	public void testUpdateButtonWithItemSelectedAndNonNumericValue() {
+		ListView<String> listView = lookup("#itemsListView").queryAs(ListView.class);
+		this.clickOn("#nameTextField").write("Milk");
+		this.clickOn("#addItemButton");
+		String firstItem = listView.getItems().get(0);
+		this.clickOn(firstItem.toString());
+		this.clickOn("#quantityTextField").write("a$");
+		this.clickOn("#updateQuantityButton");
+		FxAssert.verifyThat("#errorLabel", LabeledMatchers.hasText("Please provide a numeric value."));
+	}
+	
+	@Test
+	public void testUpdateButtonWithItemSelectedAndEmptyValue() {
+		ListView<String> listView = lookup("#itemsListView").queryAs(ListView.class);
+		this.clickOn("#nameTextField").write("Milk");
+		this.clickOn("#addItemButton");
+		String firstItem = listView.getItems().get(0);
+		this.clickOn(firstItem.toString());
+		this.clickOn("#updateQuantityButton");
+		FxAssert.verifyThat("#errorLabel", LabeledMatchers.hasText("No input has been provided."));
 	}
 	
 	@Test

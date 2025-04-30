@@ -5,8 +5,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Label;
 
@@ -43,7 +41,7 @@ public class MainWindow {
 
     @FXML
     void addItem(ActionEvent event) {
-		if (this.nameTextField.getText() == null || this.nameTextField.getText().isEmpty()) {
+		if (this.nameTextField.getText().isEmpty()) {
 			this.errorLabel.setText("Please provide a valid item name.");
 		} else {
 			String name = this.nameTextField.getText();
@@ -66,14 +64,13 @@ public class MainWindow {
 	@FXML
     void selectItem(MouseEvent event) {
 		this.nameTextField.setText(this.getSubstringBefore(this.itemsListView.getSelectionModel().getSelectedItem()));
-		this.quantityTextField.setText(this.getSubstringAfter(this.itemsListView.getSelectionModel().getSelectedItem()));
     }
 
     @FXML
     void updateQuantity(ActionEvent event) {
 		if (this.itemsListView.getSelectionModel().getSelectedItem() == null) {
 			this.errorLabel.setText("Please select an item to modify from the shopping list.");
-		} else if (this.quantityTextField.getText() == null || this.quantityTextField.getText().isEmpty()) {
+		} else if (this.quantityTextField.getText().isEmpty()) {
 			this.errorLabel.setText("No input has been provided.");
 		} else if (this.containsNonNumericValues(this.quantityTextField.getText())) {
 			this.errorLabel.setText("Please provide a numeric value.");
@@ -87,31 +84,15 @@ public class MainWindow {
 			
 		}
     }
-
-    @FXML
-    void initialize() {
-        assert addItemButton != null : "fx:id=\"addItemButton\" was not injected: check your FXML file 'MainWindow.fxml'.";
-        assert itemsListView != null : "fx:id=\"itemsListView\" was not injected: check your FXML file 'MainWindow.fxml'.";
-        assert nameTextField != null : "fx:id=\"nameTextField\" was not injected: check your FXML file 'MainWindow.fxml'.";
-        assert quantityTextField != null : "fx:id=\"quantityTextField\" was not injected: check your FXML file 'MainWindow.fxml'.";
-        assert removeItemButton != null : "fx:id=\"removeItemButton\" was not injected: check your FXML file 'MainWindow.fxml'.";
-        assert updateQuantityButton != null : "fx:id=\"updateQuantityButton\" was not injected: check your FXML file 'MainWindow.fxml'.";
-
-    }
 	
 	private String getSubstringBefore(String str) {
 		int index = str.indexOf(":");
 		return str.substring(0, index);
 	}
 	
-	private String getSubstringAfter(String str) {
-		int index = str.indexOf(":");
-		return str.substring(index + 1).trim();
-	}
-	
 	private boolean containsNonNumericValues(String str) {
-		for (char c : str.toCharArray()) {
-			if (Character.isLetter(c) || !Character.isLetterOrDigit(c)) {
+		for (char j : str.toCharArray()) {
+			if (Character.isLetter(j) || !Character.isLetterOrDigit(j)) {
 				return true;
 			}
 		}

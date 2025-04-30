@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: edu.westga.devops.a4.test.view.main_window.TestShoppingList
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.584 s - in edu.westga.devops.a4.test.view.main_window.TestShoppingList
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 22.402 s - in edu.westga.devops.a4.test.view.main_window.TestShoppingList
