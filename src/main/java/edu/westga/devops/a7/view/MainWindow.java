@@ -2,11 +2,11 @@ package edu.westga.devops.a7.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ListView;
 
 import edu.westga.devops.a7.model.Item;
 
@@ -22,7 +22,7 @@ public class MainWindow {
     private Button addItemButton;
 
     @FXML
-    private ListView<?> itemListView;
+    private ListView<?> itemsListView;
 
     @FXML
     private TextField nameTextField;
@@ -54,7 +54,7 @@ public class MainWindow {
     @FXML
     void initialize() {
         assert addItemButton != null : "fx:id=\"addItemButton\" was not injected: check your FXML file 'MainWindow.fxml'.";
-        assert itemListView != null : "fx:id=\"itemListView\" was not injected: check your FXML file 'MainWindow.fxml'.";
+        assert itemsListView != null : "fx:id=\"itemsListView\" was not injected: check your FXML file 'MainWindow.fxml'.";
         assert nameTextField != null : "fx:id=\"nameTextField\" was not injected: check your FXML file 'MainWindow.fxml'.";
         assert quantityTextField != null : "fx:id=\"quantityTextField\" was not injected: check your FXML file 'MainWindow.fxml'.";
         assert removeItemButton != null : "fx:id=\"removeItemButton\" was not injected: check your FXML file 'MainWindow.fxml'.";
