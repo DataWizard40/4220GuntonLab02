@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Label;
 
 import edu.westga.devops.a7.model.Item;
 
@@ -21,6 +22,9 @@ public class MainWindow {
 
     @FXML
     private Button addItemButton;
+	
+    @FXML
+    private Label errorLabel;
 
     @FXML
     private ListView<String> itemsListView;
@@ -40,11 +44,7 @@ public class MainWindow {
     @FXML
     void addItem(ActionEvent event) {
 		if (this.nameTextField.getText() == null || this.nameTextField.getText().isEmpty()) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Invalid Item Name");
-			alert.setHeaderText(null);
-			alert.setContentText("Please procide a valid item name.");
-			alert.showAndWait();
+			this.errorLabel.setText("Please provide a valid item name.");
 		} else {
 			String name = this.nameTextField.getText();
 			Item item = new Item(name);
@@ -55,11 +55,7 @@ public class MainWindow {
     @FXML
     void removeItem(ActionEvent event) {
 		if (this.itemsListView.getSelectionModel().getSelectedItem() == null) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Item Not Selected");
-			alert.setHeaderText(null);
-			alert.setContentText("Please select an item to remove from the shopping list.");
-			alert.showAndWait();
+			this.errorLabel.setText("Please select an item to remove from the shopping list.");
 		} else {
 			this.itemsListView.getItems().remove(this.itemsListView.getSelectionModel().getSelectedIndex());
 			this.nameTextField.setText("");
@@ -76,29 +72,13 @@ public class MainWindow {
     @FXML
     void updateQuantity(ActionEvent event) {
 		if (this.itemsListView.getSelectionModel().getSelectedItem() == null) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Item Not Selected");
-			alert.setHeaderText(null);
-			alert.setContentText("Please select an item to modify from the shopping list.");
-			alert.showAndWait();
+			this.errorLabel.setText("Please select an item to modify from the shopping list.");
 		} else if (this.quantityTextField.getText() == null || this.quantityTextField.getText().isEmpty()) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("No Input");
-			alert.setHeaderText(null);
-			alert.setContentText("No input has been provided.");
-			alert.showAndWait();
+			this.errorLabel.setText("No input has been provided.");
 		} else if (this.containsNonNumericValues(this.quantityTextField.getText())) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Non-numeric Value Entered");
-			alert.setHeaderText(null);
-			alert.setContentText("Please provide a numeric value.");
-			alert.showAndWait();
+			this.errorLabel.setText("Please provide a numeric value.");
 		} else if (Integer.parseInt(this.quantityTextField.getText()) <= 0) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Non-positive Numeric Value Entered");
-			alert.setHeaderText(null);
-			alert.setContentText("Please provide a positive numeric value.");
-			alert.showAndWait();
+			this.errorLabel.setText("Please provide a positive numeric value.");
 		} else {
 			this.itemsListView.getItems().remove(this.itemsListView.getSelectionModel().getSelectedIndex());
 			Item item = new Item(this.nameTextField.getText());
